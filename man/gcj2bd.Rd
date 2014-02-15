@@ -1,0 +1,41 @@
+\name{gcj2bd}
+\alias{gcj2bd}
+\title{Convert coordinates}
+\usage{
+gcj2bd(gcjLat, gcjLon)
+}
+\arguments{
+  \item{gcjLat}{a numeric latitude in GCJ-02}
+
+  \item{gcjLon}{a numeric longitude in GCJ-02}
+}
+\value{
+a data.frame with variables lat/lng
+}
+\description{
+converts lat/lon coordintes from GCJ-02 to BD-09
+}
+\details{
+BD-09 coordinate system is used by Baidu Maps and encrypted
+based on GCJ-02 coordinates for information safety.
+}
+\examples{
+\dontrun{
+# latitude/longitude coordinates of Beijing railway station
+# GCJ-02: (39.90245, 116.42703)
+# BD-09:  (39.90851, 116.43351)
+gcj2bd(39.90245, 116.42703) # correct
+}
+}
+\author{
+Jun Cai (\email{cai-j12@mails.tsinghua.edu.cn}), PhD
+student from Center for Earth System Science, Tsinghua
+University
+}
+\seealso{
+\code{\link{bd2gcj}}, \code{\link{conv}}.
+
+\url{http://blog.csdn.net/coolypf/article/details/8569813}
+for C version source code.
+}
+

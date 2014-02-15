@@ -1,0 +1,47 @@
+\name{wgs2gcj}
+\alias{wgs2gcj}
+\title{Convert coordinates}
+\usage{
+wgs2gcj(wgsLat, wgsLon)
+}
+\arguments{
+  \item{wgsLat}{a numeric latitude in WGS-84}
+
+  \item{wgsLon}{a numeric longitude in WGS-84}
+}
+\value{
+a data.frame with variables lat/lng
+}
+\description{
+converts lat/lon coordintes from WGS-84 to GCJ-02
+}
+\details{
+for the sake of information security, all real WGS-84
+latitude/longitude coordites must be encrypted by National
+Admistration of Surveying, Mapping and Geoinformation
+(\url{http://en.sbsm.gov.cn/}) into GCJ-02 (known as 'Mars
+coordinate system') with a deviation no more than 700
+meters in China. Though the encryption algorithm is highly
+confidential, the conversion algorithm is a public secrect
+on the Internet and verfied to be correct.
+}
+\examples{
+\dontrun{
+# latitude/longitude coordinates of Beijing railway station
+# WGS-84: (39.90105, 116.42079)
+# GCJ-02: (39.90245, 116.42703)
+wgs2gcj(39.90105, 116.42079) # correct
+}
+}
+\author{
+Jun Cai (\email{cai-j12@mails.tsinghua.edu.cn}), PhD
+student from Center for Earth System Science, Tsinghua
+University
+}
+\seealso{
+\code{\link{gcj2wgs}}, \code{\link{conv}}.
+
+\url{https://on4wp7.codeplex.com/SourceControl/changeset/view/21483#353936}
+for C version source code.
+}
+

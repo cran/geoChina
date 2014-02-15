@@ -1,0 +1,39 @@
+\name{bd2wgs}
+\alias{bd2wgs}
+\title{Convert coordinates}
+\usage{
+bd2wgs(bdLat, bdLon)
+}
+\arguments{
+  \item{bdLat}{a numeric latitude in BD-09}
+
+  \item{bdLon}{a numeric longitude in BD-09}
+}
+\value{
+a data.frame with variables lat/lng
+}
+\description{
+converts lat/lon coordintes from BD-09 to WGS-84
+}
+\details{
+convert BD-09 coordinates first into GCJ-02, then into
+WGS-84.
+}
+\examples{
+\dontrun{
+# latitude/longitude coordinates of Beijing railway station
+# WGS-84: (39.90105, 116.42079)
+# BD-09:  (39.90851, 116.43351)
+bd2wgs(39.90851, 116.43351) # correct verifying by google earth
+}
+}
+\author{
+Jun Cai (\email{cai-j12@mails.tsinghua.edu.cn}), PhD
+student from Center for Earth System Science, Tsinghua
+University
+}
+\seealso{
+\code{\link{bd2gcj}}, \code{\link{gcj2wgs}},
+\code{\link{conv}}.
+}
+

@@ -67,10 +67,13 @@ geocode <- function(address, api = c('google', 'baidu'), key = '',
     }
           
     if(output == 'latlng' | output == 'latlngc'){
-      return(ldply(as.list(address), geocode, api = api, key = key, ocs = ocs, 
+      return(ldply(address, geocode, api = api, key = key, ocs = ocs, 
                    output = output, messaging = messaging))
     }
   }
+  
+  # location encoding
+  address <- enc2utf8(address)
   
   # format url
   if(api == 'google'){
@@ -115,6 +118,7 @@ geocode <- function(address, api = c('google', 'baidu'), key = '',
     
     # more than one location found?
     if(length(gc$results) > 1 && messaging){
+      Encoding(gc$results[[1]]$formatted_address) <- "UTF-8"
       message(paste('more than one location found for "', address, 
                     '", using address\n"', tolower(gc$results[[1]]$formatted_address), 
                     '"\n', sep = ''))

@@ -42,6 +42,10 @@
 #' conv(39.90851, 116.43351, from = 'BD-09', to = 'WGS-84')
 #' # not supported by baidu map api, return NAs
 #' conv(39.90851, 116.43351, from = 'BD-09', to = 'WGS-84', api = TRUE)
+#' # convert multiple coordinates
+#' lat = c(39.99837, 39.98565)
+#' lng = c(116.3203, 116.2998)
+#' conv(lat, lng, from = 'WGS-84', to = 'GCJ-02')
 #' }
 
 conv <- function(lat, lon, from = c('WGS-84', 'GCJ-02', 'BD-09'), 
@@ -52,6 +56,12 @@ conv <- function(lat, lon, from = c('WGS-84', 'GCJ-02', 'BD-09'),
   from <- match.arg(from)
   to <- match.arg(to)
   stopifnot(is.logical(api))
+  
+  # vectorize
+  if(length(lat) > 1){
+    return(ldply(seq_along(lat), function(i){conv(lat[i], lon[i], from = from, 
+                                                  to = to, api = api) }))
+  }
   
   if(from == to){
     return(data.frame(lat = lat, lng = lon))
